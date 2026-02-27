@@ -2,11 +2,11 @@ services:
   # Backend API Service
   - type: web
     name: bookstore-api
-    env: node
+    env: python
     region: oregon
     plan: free
-    buildCommand: cd server && npm install
-    startCommand: cd server && npm start
+    buildCommand: cd server && pip install -r requirements.txt
+    startCommand: cd server && uvicorn main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/health
     envVars:
       - key: PORT
